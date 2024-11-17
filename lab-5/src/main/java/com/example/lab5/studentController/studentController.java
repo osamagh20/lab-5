@@ -35,31 +35,16 @@ public class studentController {
         return new ApiResponse("student deleted");
     }
 
-    @GetMapping("/getHonor/{honor}")
-    public ArrayList<Student> displayStudentByHonor(@PathVariable int honor) {
+    @GetMapping("/getHonor/{index}")
+    public String displayStudentByHonor(@PathVariable int index) {
 
-        ArrayList<Student> students1 = new ArrayList<>();
-        ArrayList<Student> students2 = new ArrayList<>();
-        if (honor == 1){
-            for (int i = 0; i < students.size(); i++) {
-                if(students.get(i).getGPA()>=4.75 && students.get(i).getGPA()<= 5){
-                    students1.add(students.get(i));
+        if(students.get(index).getGPA() >=4.75 && students.get(index).getGPA()<= 5) {
+            return "First class Honor";
+        }else if (students.get(index).getGPA()>=4.25 && students.get(index).getGPA()<=4.74){
+            return "Second class Honor";
 
-                }
-
-            }
-            return students1;
-        }else if (honor == 2){
-            for (int i = 0; i < students.size(); i++) {
-                if (students.get(i).getGPA()>=4.25 && students.get(i).getGPA()<=4.74){
-                    students2.add(students.get(i));
-
-                }
-
-            }
-            return students2;
         }
-        return null;
+            return "Student not have honor";
 
     }
 
